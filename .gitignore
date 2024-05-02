@@ -15,13 +15,16 @@
 src/.htaccess.watch
 /src/.npm/
 /.backup/*
-/docker/*
 *.sql
-###< project specific ###
+
+docker/*
+!docker/shop/
+docker/shop/*
+!docker/shop/Dockerfile
 
 !/src/public/.htaccess
 !/src/config/jwt/.gitkeep
-!/src/docker/shop/Dockerfile
+###< project specific ###
 
 ###> platform.sh ###
 !.platform.app.yaml
@@ -44,6 +47,10 @@ src/.htaccess.watch
 /src/auth.json
 /src/public/asset-manifest.json
 ###< shopware/core ###
+
+
+
+
 
 
 
