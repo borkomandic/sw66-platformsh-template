@@ -6,9 +6,9 @@
 # exposed to the APP container through the volume. Any post-initialization action
 # could / should be defined here...
 
-# Update composer
-cd /var/www/html || return
-sudo composer self-update --no-interaction
+## Update composer
+#cd /var/www/html || return
+#sudo composer self-update --no-interaction
 
 # Install composer dependencies TODO: FIX
 #composer update --no-interaction

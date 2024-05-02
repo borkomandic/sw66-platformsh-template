@@ -34,7 +34,6 @@ SHOPWARE_ES_INDEXING_ENABLED=0
 SHOPWARE_ES_INDEX_PREFIX=sw6
 SHOPWARE_ES_THROW_EXCEPTION=1
 SHOPWARE_HTTP_CACHE_ENABLED=1
-SHOPWARE_SKIP_WEBINSTALLER=1
 STOREFRONT_PROXY_PORT=9998
 STOREFRONT_ASSETS_PORT=9999
 STOREFRONT_PROXY_URL=http://${PROJECT_NAME}.local
@@ -49,3 +48,9 @@ fi
 
 # Append or overwrite .env file
 printf "%s" "$ENV_VARIABLES" > /var/www/html/.env
+
+# Update composer
+export HOME=${HOME:-/var/www}
+cd /var/www/html || return
+sudo composer self-update --no-interaction
+composer update --no-interaction
