@@ -1,4 +1,4 @@
-###> project specific ###
+###> project general rules ###
 /.idea
 /src/vendor/*
 /src/.bash_history
@@ -16,14 +16,21 @@ src/.htaccess.watch
 /src/.npm/
 /.backup/*
 *.sql
-
 docker/*
 !docker/shop/
 docker/shop/*
 !docker/shop/Dockerfile
-
 !/src/public/.htaccess
 !/src/config/jwt/.gitkeep
+/src/.gitignore
+/src/compose.yaml
+/src/compose.override.yaml
+###< project general rules ###
+
+###> not used since docker-compose is handled from ./ ###
+/src/.gitignore
+/src/compose.yaml
+/src/compose.override.yaml
 ###< project specific ###
 
 ###> platform.sh ###
@@ -42,8 +49,7 @@ docker/shop/*
 /src/public/sitemap/*
 /src/files/*
 !/src/files/.htaccess
-/src/var/*
-!/src/var/.htaccess
+/src/var/
 /src/auth.json
 /src/public/asset-manifest.json
 ###< shopware/core ###

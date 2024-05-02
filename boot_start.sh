@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Update composer
+export HOME=${HOME:-/var/www}
+cd /var/www/html || return
+sudo composer self-update --no-interaction
+composer update --no-interaction
+
 # Define the project name
 PROJECT_NAME="demostore"
 
@@ -48,9 +54,3 @@ fi
 
 # Append or overwrite .env file
 printf "%s" "$ENV_VARIABLES" > /var/www/html/.env
-
-# Update composer
-export HOME=${HOME:-/var/www}
-cd /var/www/html || return
-sudo composer self-update --no-interaction
-composer update --no-interaction
