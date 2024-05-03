@@ -23,17 +23,7 @@ services:
     networks:
       - web
     environment:
-      - PHP_VERSION=8.3
-      - XDEBUG_ENABLED=1
-      - SW_CURRENCY=GBP
-      - APACHE_DOCROOT=/var/www/html/public
-      - XDEBUG_MODE=debug
-      - XDEBUG_SESSION=1
-      - DEVELOP_AUTH_ENABLED=0
-      - SSH_USER=sshsw6user
-      - SSH_PWD=sshsw6secret
-      - TIDEWAYS_KEY=xxx
-      - TIDEWAYS_ENV=dev
+      - PROJECT_NAME=${PROJECT_NAME}
 
   db:
     container_name: ${PROJECT_NAME}_db

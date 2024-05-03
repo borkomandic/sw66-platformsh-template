@@ -17,10 +17,11 @@ PROJECT_NAME="demostore"
 
 # Define variables for localhost .env
 ENV_VARIABLES="# Generated for localhost by Docker's boot_start.sh...
+PROJECT_NAME=${PROJECT_NAME}
 APP_DEBUG=1
 APP_ENV=dev
 APP_URL=http://${PROJECT_NAME}.local
-APP_NAME=${PROJECT_NAME}
+SHOP_DOMAIN=${PROJECT_NAME}.local
 APP_SECRET=4d1de74237de9ef9be7c394250743cae
 INSTANCE_ID=579c95cdba2243ddbe4ac8905ec72cef
 COMPOSER_ROOT_VERSION=1.0.0
@@ -45,6 +46,17 @@ STOREFRONT_ASSETS_PORT=9999
 STOREFRONT_PROXY_URL=http://${PROJECT_NAME}.local
 PROXY_URL=http://${PROJECT_NAME}.local
 BLUE_GREEN_DEPLOYMENT=0
+PHP_VERSION=8.3
+XDEBUG_ENABLED=1
+SW_CURRENCY=GBP
+APACHE_DOCROOT=/var/www/html/public
+XDEBUG_MODE=debug
+XDEBUG_SESSION=1
+DEVELOP_AUTH_ENABLED=0
+SSH_USER=sshsw6user
+SSH_PWD=sshsw6secret
+TIDEWAYS_KEY=xxx
+TIDEWAYS_ENV=dev
 "
 
 # Check if .env file exists, create if not
