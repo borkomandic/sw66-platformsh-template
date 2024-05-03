@@ -6,9 +6,6 @@ cd /var/www/html || return
 sudo composer self-update --no-interaction
 composer update --no-interaction
 
-# Define the project name
-PROJECT_NAME="demostore"
-
 # Custom boot script, executed by Dockware's entrypoint.sh.
 # Upon initialization, entrypoint.sh checks if "/var/www/boot_start.sh" exists,
 # to execute the script before any further action. Therefore, this file should be
