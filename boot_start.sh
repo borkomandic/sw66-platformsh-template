@@ -1,24 +1,15 @@
 #!/bin/sh
 
-# Update composer
-export HOME=${HOME:-/var/www}
-cd /var/www/html || return
-sudo composer self-update --no-interaction
-composer update --no-interaction
+echo "DOCKWARE's boot_start.sh: creating or updating .env..."
 
-# Custom boot script, executed by Dockware's entrypoint.sh.
-# Upon initialization, entrypoint.sh checks if "/var/www/boot_start.sh" exists,
-# to execute the script before any further action. Therefore, this file should be
-# exposed to the APP container through the volume. Any pre-initialization action
-# could / should be defined here...
+ENV_PATH="$PWD/.env"
 
-# Define variables for localhost .env
 ENV_VARIABLES="# Generated for localhost by Docker's boot_start.sh...
-PROJECT_NAME=${PROJECT_NAME}
+PROJECT_NAME=$PROJECT_NAME
 APP_DEBUG=1
 APP_ENV=dev
-APP_URL=http://${PROJECT_NAME}.local
-SHOP_DOMAIN=${PROJECT_NAME}.local
+APP_URL=http://$PROJECT_NAME.local
+SHOP_DOMAIN=$PROJECT_NAME.local
 APP_SECRET=4d1de74237de9ef9be7c394250743cae
 INSTANCE_ID=579c95cdba2243ddbe4ac8905ec72cef
 COMPOSER_ROOT_VERSION=1.0.0
@@ -40,8 +31,8 @@ SHOPWARE_ES_THROW_EXCEPTION=1
 SHOPWARE_HTTP_CACHE_ENABLED=1
 STOREFRONT_PROXY_PORT=9998
 STOREFRONT_ASSETS_PORT=9999
-STOREFRONT_PROXY_URL=http://${PROJECT_NAME}.local
-PROXY_URL=http://${PROJECT_NAME}.local
+STOREFRONT_PROXY_URL=http://$PROJECT_NAME.local
+PROXY_URL=http://$PROJECT_NAME.local
 BLUE_GREEN_DEPLOYMENT=0
 PHP_VERSION=8.3
 XDEBUG_ENABLED=1
@@ -56,10 +47,22 @@ TIDEWAYS_KEY=xxx
 TIDEWAYS_ENV=dev
 "
 
-# Check if .env file exists, create if not
-if [ ! -f /var/www/html/.env ]; then
-    touch /var/www/html/.env
-fi
+# Always write the environment variables to the .env file, overriding if exists
+printf "%s" "$ENV_VARIABLES" > "$ENV_PATH"
 
-# Append or overwrite .env file
-printf "%s" "$ENV_VARIABLES" > /var/www/html/.env
+# Check if .env file successfully handled
+if [ ! -f "$ENV_PATH" ]; then
+    echo "The .env file at $ENV_PATH does not exist. Something went wrong with creating/appending..."
+    exit 1
+fi
+echo "\nContents of $ENV_PATH:\n\n"
+cat "$ENV_PATH"
+echo "-----------------------------------------------------------"
+
+echo "DOCKWARE's boot_start.sh: composer actions..."
+# Update composer
+export COMPOSER_HOME="$PWD/var/cache/composer"
+cd $PWD || return
+sudo composer self-update --no-interaction
+composer update --no-interaction
+echo "-----------------------------------------------------------"
