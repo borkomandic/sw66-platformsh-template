@@ -8,7 +8,6 @@
 /src/.local/
 /src/files/
 /src/public/*
-/src/.env
 /src/.mysql_history
 /src/.rnd
 /src/.uniqueid.txt
