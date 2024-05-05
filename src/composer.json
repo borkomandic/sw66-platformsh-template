@@ -67,7 +67,7 @@
   {
     "symfony":
     {
-      "allow-contrib": true,
+      "allow-contrib": false,
       "endpoint":
       [
         "https://raw.githubusercontent.com/shopware/recipes/flex/main/index.json",
