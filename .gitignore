@@ -13,6 +13,7 @@
 /src/.htaccess.watch
 /src/.bashrc
 /src/.npm/
+/src/.env
 /.backup/*
 *.sql
 docker/*
