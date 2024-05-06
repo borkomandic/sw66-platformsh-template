@@ -11,7 +11,8 @@
 /src/.mysql_history
 /src/.rnd
 /src/.uniqueid.txt
-src/.htaccess.watch
+/src/.htaccess.watch
+/src/.bashrc
 /src/.npm/
 /.backup/*
 *.sql
@@ -21,12 +22,10 @@ docker/shop/*
 !docker/shop/Dockerfile
 !/src/public/.htaccess
 !/src/config/jwt/.gitkeep
-/src/.gitignore
-/src/compose.yaml
-/src/compose.override.yaml
 ###< project general rules ###
 
-###> not used since docker-compose is handled from ./ ###
+###> in case symfony recipes generate some docker files, ###
+###> they arent gonna be used, since docker-compose is handled from ./ ###
 /src/.gitignore
 /src/compose.yaml
 /src/compose.override.yaml
@@ -39,6 +38,7 @@ docker/shop/*
 ###< platform.sh ###
 
 ###> shopware/core ###
+/src/.env
 /src/.env.local
 /src/.env.*.local
 /src/public/bundles/*

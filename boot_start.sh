@@ -55,6 +55,23 @@ if [ ! -f "$ENV_PATH" ]; then
     echo "The .env file at $ENV_PATH does not exist. Something went wrong with creating/appending..."
     exit 1
 fi
+
+# Command to be used for exporting .env vals
+CMD="export \$(grep -v '^#' $ENV_PATH | xargs)"
+
+# export for the current bash session
+eval "$CMD"
+
+# Check if .bashrc exists in the current directory, create if not
+if [ ! -f "$PWD/.bashrc" ]; then
+    touch "$PWD/.bashrc"
+fi
+
+# Check if the command is already in .bashrc, append if not
+if ! grep -Fxq "$CMD" "$PWD/.bashrc"; then
+    echo "$CMD" >> "$PWD/.bashrc"
+fi
+
 echo "\nContents of $ENV_PATH:\n\n"
 cat "$ENV_PATH"
 echo "-----------------------------------------------------------"

@@ -24,8 +24,6 @@ services:
       - web
     environment:
       - PROJECT_NAME=${PROJECT_NAME}
-    env_file:
-      - src/.env
 
   db:
     container_name: ${PROJECT_NAME}_db
